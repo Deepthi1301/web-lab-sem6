@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <meta charset = "UTF-8" />
+    <title>Insert Data</title>
+    <script src = "react/react.development.js"></script>
+    <script src = "react/react-dom.development.js"></script>
+    <script src = "react/prop-types.js"></script>
+    <script src = "react/axios.min.js"></script>
+    <script src = "react/babel.min.js"></script>
+    </head>
+
+    <body>
+        <div class="root"></div>
+        <script type = "text/babel">
+            class App extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state = {
+                        usn: "",
+                        name: "",
+                        branch: "",
+                        grade: ""
+                        
+                    }
+                }
+                
+                handleSubmit(e){
+                    e.preventDefault();
+                    const data = {
+                        usn: this.state.usn,
+                        name: this.state.name,
+                        branch: this.state.branch,
+                        grade: this.state.grade 
+                    };
+                    axios({
+                    method: "post",
+                    url: "http://localhost:3000/api/addData",
+                    data: data,
+                })
+                .then((response)=>{
+                    console.log("Data sent to server")
+                    if(response.data.status ==="success"){
+                        console.log("success")
+                        this.resetForm()
+                    } else if(response.data.status === "error"){
+                        console.log(response.data.message)
+                        alert("error in sending data")
+                        this.resetForm()
+                    }
+                })
+                .catch(function(e){
+                    console.log(e)
+                });
+
+            }
+            resetForm(){
+                this.setState({
+                    usn: "",
+                    name: "",
+                    branch: "",
+                    grade: ""
+                });
+            }
+            handleChange(e){
+                this.setState({
+                    [e.target.name]:e.target.value
+                });
+            }
+            render(){
+                return(<div className ="App"><h1>Insert Data</h1>
+                <form id = "form" onSubmit = {this.handleSubmit.bind(this)} method = "post">
+                    Name: <input type = "text" placeholder = "Name" name = "name" value = {this.state.name} onChange = {this.handleChange.bind(this)} /><br />
+                    USN: <input type = "text" placeholder = "USN" name = "usn" value = {this.state.usn} onChange = {this.handleChange.bind(this)} /><br />
+                    Branch: <input type = "text" placeholder = "Branch" name = "branch" value = {this.state.branch} onChange = {this.handleChange.bind(this)} /><br />
+                    Grade: <input type = "text" name = "grade" value = {this.state.grade} onChange = {this.handleChange.bind(this)} /><br />
+                    <input type ="submit" value = "Insert" /></form>
+                    <br />
+                    <br />
+                    <h4></h4>
+                    </div>)
+            }
+              
+            }
+            ReactDOM.render(<App />,document.querySelector(".root")) 
+            </script>
+            </body>
+        </html>

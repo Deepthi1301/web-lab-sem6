@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head><title>Name React</title>
+    <meta charset = "UTF-8" />
+    <script src = "react/react.development.js"></script>
+    <script src = "react/react-dom.development.js"></script> 
+    <script src = "react/prop-types.js"></script>
+    <script src = "react/axios.min.js"></script>
+    <script src = "react/babel.min.js"></script>
+    </head>
+
+    <body>
+        <div id = "root"></div>
+        <script type = "text/babel">
+
+            class App extends React.Component{
+                constructor(props) {
+                    super(props);
+                    this.state = { data: "" };
+                }
+
+                changeData = (e) => {
+                    this.setState({ data: e.target.value });
+                }
+
+                render() {
+                    return(
+                        <div>
+                            <h1>Enter your name:</h1>
+                            <input type = "text" onChange = {this.changeData} />
+                            <br />
+                            <br />
+                            <h3>Entered name is: </h3>
+                            <h1>{this.state.data}</h1>
+                            </div>
+                    );
+                }
+            
+            }
+            ReactDOM.render(<App />, document.getElementById("root"))
+            </script>
+            </body>
+            </html>

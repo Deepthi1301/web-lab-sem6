@@ -1,0 +1,24 @@
+<DOCTYPE html>
+    <head><title>Calculator</title></head>
+    <body>
+        <script type = "text/javascript">
+            function Calculator(n) {
+                this.val = n
+                return this;
+            }
+            Calculator.prototype.Add = function(n) {
+                this.val+=n
+                return this;
+            }
+            Calculator.prototype.Subtract= function(n) {
+                this.val -= n
+                return this;
+            }
+            Calculator.prototype.getAnswer = function() {
+                return this.val;
+            }
+
+            console.log(new Calculator(2).Add(2).Add(2).Subtract(3).getAnswer())
+            </script>
+            </body>
+        </html>

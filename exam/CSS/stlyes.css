@@ -1,0 +1,17 @@
+h1 {
+    border: 1px solid red;
+    background-color : #d18c1d;
+    padding:10px;
+}
+
+li {
+    margin: 15px;
+    background-color: #c0a9db;
+}
+
+p {
+    height: 600px;
+    width: 400px;
+    border: 2px black dotted;
+    background-color: #D1D631;
+}

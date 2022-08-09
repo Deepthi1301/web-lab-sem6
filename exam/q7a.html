@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head><title>Student Form</title></head>
+
+<body>
+    <form name = "regForm" action = "q7a.html">
+        Name: <input type = "text" pattern="[a-zA-Z]+" required><br><br>
+        Email: <input type = "email" placeholder = "abc@xyz.com"><br><br>
+        Phone: <input type = "text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br><br>
+        Semester: <input type = "number" min=1 max=8 value="1"><br><br>
+        Brach: <input list = "dl"><datalist id = "dl">
+            <option value = "CSE" />
+            <option value = "ISE" />
+            <option value = "ECE" />
+            </datalist><br><br>
+        Website: <input type = "url" placeholder="http://"><br><br>
+        <input type = "submit" value = "Submit">
+
+        </form>
+        </body>
+        <html>

@@ -1,0 +1,48 @@
+<DOCTYPE html>
+    <head>
+        <title>month</title>
+        <script type = "text/javascript">
+
+            function findMonth(n) {
+                var months = ["January",
+                            "February",
+                            "March",
+                            "April",
+                            "May",
+                            "June",
+                            "July",
+                            "August",
+                            "Sept",
+                            "October",
+                            "November",
+                            "December"
+                            ];
+
+                const retMonth = function(){
+                   if (isNaN(n) || n<1 || n>12) { //closure(findMonth)
+                    return "Bad Number"
+                   } else {
+                    return months[Math.floor(n-1)]  //closure(findMonth)
+                   }
+                }
+
+                return retMonth();
+            }
+
+            function getNum() {
+                var num = parseInt(document.getElementById("text").value)
+                var m = findMonth(num)
+
+                document.getElementById("result").innerHTML = m;
+            }
+            </script>
+            </head>
+
+            <body>
+                <h2>Enter number:<input type = "number" id="text"></h2><br>
+                <button onclick="getNum()">Find month</button><br>
+
+                <div id = "result"></div>
+                </body>
+
+            </html>

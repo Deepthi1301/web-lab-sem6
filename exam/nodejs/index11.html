@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head><title>Attendance</title></head>
+<body>
+    <form action = "/insertData" method = "get">
+        Name:<input type = "text" name = "name"><br>
+        USN:<input type = "text" name = "usn"><br>
+        Semester:<input type = "number" name = "sem" value = 1><br>
+        Attendance %:<input type = "number" name = "attendance" min="0" max =100><br>
+        <input type = "submit" value = "Insert Data">
+        </form>
+        <form action = "/displayData" method = "get">
+            <h2>Student with attendance lesser than 75%</h2>
+            <br><input type = "submit" value = "Display"><br>
+            </form>
+            </body>
+
+            </html>

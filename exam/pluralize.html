@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head><title>pluralize</title>
+<script type = "text/javascript">
+    function pluralize(num,noun) {
+        colNouns = ["sheep","geese", "fish"]
+        if(colNouns.includes(noun)){
+            return num + " " + noun
+        } else if (num==1){
+            return num + " " + noun
+        }else{
+            return num + " " + noun + "s"
+        }
+    }
+
+    function buttonClick(){
+        var noun = document.getElementById('noun').value
+        var num = parseInt(document.getElementById('num').value)
+        if(isNaN(num) || num<1) {
+            document.getElementById('result').innerHTML = "Bad Number"
+        } else {
+            document.getElementById('result').innerHTML = pluralize(num, noun)
+        }
+    }
+    </script>
+    </head>
+
+    <body>
+        <h2>Enter number: <input type = "number" id = "num" value = "0" />
+            <br />
+            Enter Noun: <input type = "text" id = "noun" /></h2><br />
+            <button onclick = buttonClick()>Click</button>
+            <div id = "result"></div>
+            </body>
+            </html>

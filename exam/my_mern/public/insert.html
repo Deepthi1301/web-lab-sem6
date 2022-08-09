@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <meta charset = "UTF-8" />
+    <title>Insert Data</title>
+    <script src = "react/react.development.js"></script>
+    <script src = "react/react-dom.development.js"></script>
+    <script src = "react/prop-types.js"></script>
+    <script src = "react/axios.min.js"></script>
+    <script src = "react/babel.min.js"></script>
+    </head>
+
+    <body>
+        <div class="root"></div>
+        <script type = "text/babel">
+            class App extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state = {
+                        usn: "",
+                        name: "",
+                        branch: "",
+                        percentage: "",
+                        studentData : ""
+                    }
+                }
+                
+                resetForm(){
+                this.setState({
+                    usn: "",
+                    name: "",
+                    branch: "",
+                    percentage: ""
+                })
+            }
+                handleSubmit(e){
+                    e.preventDefault();
+                    const data = {
+                        usn: this.state.usn,
+                        name: this.state.name,
+                        branch: this.state.branch,
+                        percentage: this.state.percentage 
+                    };
+                    axios({
+                    method: "post",
+                    url: "http://localhost:3000/api/addData",
+                    data: data
+                }).then(function(response){
+                    console.log("Data sent to server")
+                    if(response.data.status ==="success"){
+                        console.log("success")
+                        this.resetForm()
+                    } else if(response.data.status === "error"){
+                        console.log(response.data.message)
+                        alert("error in sending data")
+                        this.resetForm()
+                    }
+                })
+                .catch(function(e){
+                    console.log(e)
+                });
+
+            }
+            
+            handleChange(e){
+                this.setState({
+                    [e.target.name]:e.target.value
+                });
+            }
+            render(){
+                return(<div id ="main"><h1>Insert Data</h1>
+                <form name = "form" method = "post">
+                    Name: <input type = "text" placeholder = "Name" name = "name" value = {this.state.name} onChange = {this.handleChange.bind(this)} /><br />
+                    USN: <input type = "text" placeholder = "USN" name = "usn" value = {this.state.usn} onChange = {this.handleChange.bind(this)} /><br />
+                    Branch: <input type = "text" placeholder = "Branch" name = "branch" value = {this.state.branch} onChange = {this.handleChange.bind(this)} /><br />
+                    Percentage: <input type = "number" name = "percentage" min = "0" max = "100" value = {this.state.percentage} onChange = {this.handleChange.bind(this)} /><br />
+                    <button onClick = {this.handleSubmit.bind(this)}>Insert</button></form>
+                    <br />
+                    <br />
+                    <h4>{this.state.studentData}</h4>
+                    </div>)
+            }
+              
+            }
+            ReactDOM.render(<App />,document.querySelector(".root")) 
+            </script>
+            </body>
+        </html>

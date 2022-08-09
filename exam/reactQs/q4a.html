@@ -1,0 +1,56 @@
+<DOCTYPE html>
+    <head><title>Employee Details</title>
+        
+    <meta charset="UTF-8" />
+    
+   
+        <script src = "react/react.development.js"></script>
+        <script src = "react/react-dom.development.js"></script>
+        
+        <script src = "react/babel.min.js"></script>
+        <script src = "react/prop-types.js"></script>
+
+        </head>
+
+        <body>
+            <div id = "root"></div>
+
+            <script type = "text/babel">
+                var names = ["John", "Paul", "Joseph","George", "Sam"];
+                var addresses = ["Bangalore", "Delhi", "Chennai","Mumbai", "Pune"];
+
+                class App extends React.Component {
+                    constructor(props){
+                        super(props);
+                        this.state = {
+                            name : "Michael",
+                            address : "Himalayas",
+                            Company : "ABC & Co.",
+                        };
+                    }
+
+                    changeData=(e)=>{
+                        var i = Math.floor(Math.random() * names.length)
+                        this.setState({
+                            name : names[i],
+                            address : addresses[i]
+                        });
+                    };
+
+                    render(){
+                        return(
+                            <div>
+                                <h1>Employee Details</h1>
+                            <h3>Name : {this.state.name}<br /></h3>
+                            <h3>Address : {this.state.address}<br /></h3>
+                            <h3>Company : {this.state.Company} <br /></h3>
+                                <h3>Click the button to change Employee details</h3><br />
+                                <button onClick = {this.changeData}>Change Data</button>
+                                </div>);
+                    }
+                }
+                ReactDOM.render(<App />, document.getElementById("root"));
+
+            </script>
+            </body>
+        </html>
